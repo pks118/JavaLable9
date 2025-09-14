@@ -10,14 +10,12 @@ public class num4 {
                 if (wordStart < i) {
                     firstChar = str.charAt(wordStart);
                     restOfWord = str.substring(wordStart + 1, i);
-                    System.out.println(firstChar + "   "+ restOfWord);
 
 
                     capitalized = toUpperCase(firstChar);// преобразую символ в заглавный, если это не буква возвращаю обратно
                     System.out.println(capitalized);
                     result += capitalized + restOfWord;
                     System.out.println(result);
-                    System.out.println(wordStart);
                     if (i < str.length()) {
                         result += " ";
                     }
@@ -25,7 +23,6 @@ public class num4 {
                 wordStart = i + 1;
             }
         }
-
         System.out.println(result);
     }
 
