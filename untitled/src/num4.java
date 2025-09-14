@@ -1,24 +1,43 @@
 public class num4 {
     public static void main(String[] args) {
-        String str = "hello world and always come back", str2, str3 = "";
-        char ch;
-        int stage = 0;
-        for (int i = 0; i < str.length(); i++) {
-            stage++;
-            if (str.charAt(i) == ' ') {
-                ch = (char) ((int) (str.charAt(i - (stage - 1))) - 32);
-                str2 = str.substring(1 + i - (stage - 1), i + 1);
-                str3 += ch + str2;
-                stage = 0;
+        String str = "hello world and alwayse come back";
+        String result = "", restOfWord;
+        int wordStart = 0;
+        char firstChar, capitalized;
+
+        for (int i = 0; i <= str.length(); i++) {
+            if (i == str.length() || str.charAt(i) == ' ') {
+                if (wordStart < i) {
+                    firstChar = str.charAt(wordStart);
+                    restOfWord = str.substring(wordStart + 1, i);
+                    System.out.println(firstChar + "   "+ restOfWord);
+
+
+                    capitalized = toUpperCase(firstChar);// преобразую символ в заглавный, если это не буква возвращаю обратно
+                    System.out.println(capitalized);
+                    result += capitalized + restOfWord;
+                    System.out.println(result);
+                    System.out.println(wordStart);
+                    if (i < str.length()) {
+                        result += " ";
+                    }
+                }
+                wordStart = i + 1;
             }
         }
-        for (int i = str.length() - 1; i != 0; i--)
-            if (str.charAt(i) == ' ') {
-                ch = (char) ((int) (str.charAt(i + 1)) - 32);
-                str2 = str.substring(i + 2);
-                str3 += ch + str2;
-                break;
-            }
-        System.out.println(str3);
+
+        System.out.println(result);
+    }
+
+    private static char toUpperCase(char c) {
+
+        if (c >= 'а' && c <= 'я') { //проверяю символ на наличие кириллицы
+            return (char) (c - 32);
+        } else if (c == 'ё') {//Исключаю Ё
+            return 'Ё';
+        } else if (c >= 'a' && c <= 'z') {// Для латиницы
+            return (char) (c - 32);
+        }
+        return c;
     }
 }
