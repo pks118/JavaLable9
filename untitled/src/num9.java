@@ -34,8 +34,8 @@ public class num9 {
                 System.out.println("Ошибка: некорректная дата: \"" + date.substring(0, 2) + "\" !");
             System.out.println(error);
 
-            System.out.println(date.substring(3, 5));
-            System.out.println(date.substring(6));
+            //System.out.println(date.substring(3, 5));
+            //System.out.println(date.substring(6));
         } else System.out.println(error);
     }
     private static int checkingEnteredDay (String num)
