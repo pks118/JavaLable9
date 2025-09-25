@@ -1,6 +1,6 @@
 public class num4 {
     public static void main(String[] args) {
-        String str = "hello world and always come back";
+        String str = "hello world  and always come back";
         String result = "", restOfWord;
         int wordStart = 0;
         char firstChar, capitalized;

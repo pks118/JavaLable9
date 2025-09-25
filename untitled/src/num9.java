@@ -5,7 +5,7 @@ public class num9 {
         System.out.println("Введите дату в формате: ДД.ММ.ГГГГ");
         Scanner sc = new Scanner(System.in);
         String date = sc.nextLine();
-        String error = "Ошибка: вы вышли за границы формата!";
+        String error = "";
         boolean flag = true;
         int stage = 0;
 
@@ -28,26 +28,31 @@ public class num9 {
                 stage++;
             }
         }
-        int day = convertEnteredNumber(date.substring(0, 2));
-        int month = convertEnteredNumber(date.substring(3, 5));
-        int year = convertEnteredNumber(date.substring(6));
+        if (stage != 2) {
+            error = "Ошибка: некорректное количество точек!";
+            flag = false;
+        }
+        int day = 0, month = 0, year = 0;
 
         //проверяю валидацию
-        if (flag && date.length() == 10) {//проверяю на наличие ошибки и вышел ли пользователь за допустимый формат
-            if (day > 31) {//проверка даты и.т.д
+        if(flag) {
+            day = convertEnteredNumber(date.substring(0, 2));
+            month = convertEnteredNumber(date.substring(3, 5));
+            year = convertEnteredNumber(date.substring(6));
+            if (date.length() > 10) {//проверяю на наличие ошибки и вышел ли пользователь за допустимый формат
+                flag = false;
+                error = "Ошибка: вы вышли за границы формата!";
+            } else if ((day > 31) || checkMonthDay(month) < day) {//проверка даты и.т.д
                 flag = false;
                 error = "Ошибка: некорректная дата: \"" + date.substring(0, 2) + "\" !";
-            }
-            if (month > 12 || month < 1) {
+            } else if (month > 12 || month < 1) {
                 flag = false;
                 error = "Ошибка: некорректный месяц: \"" + date.substring(3, 5) + "\" !";
-            }
-
-            if (year < 1925 || year > 2025) {
+            } else if (year < 1925 || year > 2025) {
                 flag = false;
                 error = "Ошибка: некорректный год: \"" + date.substring(6) + "\" !";
             }
-        } else System.out.println(error);
+        }
 
 
         if (flag)//вывод
@@ -62,5 +67,14 @@ public class num9 {
         for (int i = nums.length() - 1; i >= 0; i--)
             num += (nums.charAt(i) - 48) * ((int) Math.pow(10, (nums.length() - 1) - i));
         return num;
+    }
+
+    private static int checkMonthDay(int month) {
+        return switch (month) {
+            case 1, 3, 5, 7, 8, 10, 12 -> 31;
+            case 4, 6, 9, 11 -> 30;
+            case 2 -> 28;
+            default -> 0;
+        };
     }
 }
