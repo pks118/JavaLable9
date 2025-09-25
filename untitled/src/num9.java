@@ -32,7 +32,7 @@ public class num9 {
             error = "Ошибка: некорректное количество точек!";
             flag = false;
         }
-        int day = 0, month = 0, year = 0;
+        int day, month, year;
 
         //проверяю валидацию
         if(flag) {
