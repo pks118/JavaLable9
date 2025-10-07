@@ -1,7 +1,10 @@
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String str = "         Hello World!         ";
+        Scanner sc = new Scanner(System.in);
+
+        String str = sc.nextLine();
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) != ' ') {
                 str = str.substring(i);
@@ -14,8 +17,6 @@ public class Main {
                 break;
             }
         }
-        for (char c : str.toCharArray()) {
-            System.out.print(c);
-        }
+        System.out.println(str);
     }
 }
