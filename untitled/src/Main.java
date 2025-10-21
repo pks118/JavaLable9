@@ -1,21 +1,34 @@
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String str = "         Hello World!         ";
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) != ' ') {
-                str = str.substring(i);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите строчку:");
+        String str = sc.nextLine();
+
+        boolean flag = str.length() != 0;
+        int countSym = 0;
+        for (char ch : str.toCharArray())
+            if(ch != ' ') {
+                countSym++;
                 break;
             }
-        }
-        for (int i = str.length() - 1; i != 0; i--) {
-            if (str.charAt(i) != ' ') {
-                str = str.substring(0, i);
-                break;
+
+
+        if(flag && countSym > 0) {
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) != ' ') {
+                    str = str.substring(i);
+                    break;
+                }
             }
-        }
-        for (char c : str.toCharArray()) {
-            System.out.print(c);
+            for (int i = str.length() - 1; i != 0; i--) {
+                if (str.charAt(i) != ' ') {
+                    str = str.substring(0, i);
+                    break;
+                }
+            }
+            System.out.println(str);
         }
     }
 }

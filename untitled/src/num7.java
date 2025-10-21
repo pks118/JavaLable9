@@ -5,11 +5,14 @@ public class num7 {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         String str1 = "";
-        for (int i = 0; i < str.length(); i++)
-            if (str.charAt(i) >= 65 && str.charAt(i) <= 122)
-                str1 += fromLatinToKirill(str.charAt(i));//транслитизатор латиницы в кириллицу
-            else str1 += fromKirillToLatin(str.charAt(i));
-        System.out.println(str1);
+        boolean flag = str.length() != 0;
+        if (flag) {
+            for (int i = 0; i < str.length(); i++)
+                if (str.charAt(i) >= 65 && str.charAt(i) <= 122)
+                    str1 += fromLatinToKirill(str.charAt(i));//транслитизатор латиницы в кириллицу
+                else str1 += fromKirillToLatin(str.charAt(i));
+            System.out.println(str1);
+        }
     }
 
     private static String fromLatinToKirill(char symbol) {
