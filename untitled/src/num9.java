@@ -8,57 +8,59 @@ public class num9 {
         String error = "";
         boolean flag = true;
         int stage = 0;
-
-        //проверяю синтаксис
-        for (int i = 0; i < date.length(); i++) {
-            if ((!(date.charAt(i) >= '0' && date.charAt(i) <= '9')) && date.charAt(i) != '.') {
-                error = "Ошибка: \"" + date.charAt(i) + "\" не допустимый формат!";
-                flag = false;
-                break;
-            } else if ((date.charAt(i) == '.')) {
-                if (i != 2 && stage == 0) {//проверяю стоит ли точка на своём месте
-                    error = "Ошибка: день \"" + date.substring(0, i) + "\" введена не корректно!";
+        boolean strTrue = date.length() != 0;
+        if (strTrue) {
+            //проверяю синтаксис
+            for (int i = 0; i < date.length(); i++) {
+                if ((!(date.charAt(i) >= '0' && date.charAt(i) <= '9')) && date.charAt(i) != '.') {
+                    error = "Ошибка: \"" + date.charAt(i) + "\" не допустимый формат!";
                     flag = false;
                     break;
-                } else if (i != 5 && stage == 1) {
-                    error = "Ошибка: месяц \"" + date.substring(3, i) + "\" введён не корректно!";
-                    flag = false;
-                    break;
+                } else if ((date.charAt(i) == '.')) {
+                    if (i != 2 && stage == 0) {//проверяю стоит ли точка на своём месте
+                        error = "Ошибка: день \"" + date.substring(0, i) + "\" введён не корректно!";
+                        flag = false;
+                        break;
+                    } else if (i != 5 && stage == 1) {
+                        error = "Ошибка: месяц \"" + date.substring(3, i) + "\" введён не корректно!";
+                        flag = false;
+                        break;
+                    }
+                    stage++;
                 }
-                stage++;
             }
-        }
-        if (stage != 2) {
-            error = "Ошибка: некорректное количество точек!";
-            flag = false;
-        }
-        int day, month, year;
-
-        //проверяю валидацию
-        if(flag) {
-            day = convertEnteredNumber(date.substring(0, 2));
-            month = convertEnteredNumber(date.substring(3, 5));
-            year = convertEnteredNumber(date.substring(6));
-            if (date.length() > 10) {//проверяю на наличие ошибки и вышел ли пользователь за допустимый формат
+            if (stage != 2) {
+                error = "Ошибка: некорректное количество точек!";
                 flag = false;
-                error = "Ошибка: вы вышли за границы формата!";
-            } else if ((day > 31) || checkMonthDay(month) < day) {//проверка даты и.т.д
-                flag = false;
-                error = "Ошибка: некорректная дата: \"" + date.substring(0, 2) + "\" !";
-            } else if (month > 12 || month < 1) {
-                flag = false;
-                error = "Ошибка: некорректный месяц: \"" + date.substring(3, 5) + "\" !";
-            } else if (year < 1925 || year > 2025) {
-                flag = false;
-                error = "Ошибка: некорректный год: \"" + date.substring(6) + "\" !";
             }
+            int day, month, year;
+
+            //проверяю валидацию
+            if (flag) {
+                day = convertEnteredNumber(date.substring(0, 2));
+                month = convertEnteredNumber(date.substring(3, 5));
+                year = convertEnteredNumber(date.substring(6));
+                if (date.length() > 10) {//проверяю на наличие ошибки и вышел ли пользователь за допустимый формат
+                    flag = false;
+                    error = "Ошибка: вы вышли за границы формата!";
+                } else if ((day > 31) || checkMonthDay(month) < day) {//проверка даты и.т.д
+                    flag = false;
+                    error = "Ошибка: некорректная дата: \"" + date.substring(0, 2) + "\" !";
+                } else if (month > 12 || month < 1) {
+                    flag = false;
+                    error = "Ошибка: некорректный месяц: \"" + date.substring(3, 5) + "\" !";
+                } else if (year < 1925 || year > 2025) {
+                    flag = false;
+                    error = "Ошибка: некорректный год: \"" + date.substring(6) + "\" !";
+                }
+            }
+
+
+            if (flag)//вывод
+                System.out.println(date.substring(0, 2) + "\n" + date.substring(3, 5) + "\n" + date.substring(6));
+            else
+                System.out.println(error);
         }
-
-
-        if (flag)//вывод
-            System.out.println(date.substring(0, 2) + "\n" + date.substring(3, 5) + "\n" + date.substring(6));
-        else
-            System.out.println(error);
     }
 
     private static int convertEnteredNumber(String nums)//конвертирую из строки в число
