@@ -67,7 +67,7 @@ public class num14 {
             case 4:
                 result ="";
                 //подсчитываю количество оставшихся пробелов
-                double addSpaces = (((double) (spaces.length() + numWords - 1) /(numWords-1)) - (spaces.length() + numWords - 1) /(numWords-1)) * (numWords - 1);
+                double addSpaces = (((double) (spaces.length() + numWords - 1) % (numWords-1)));
 
                 //считаю пробелы
                 spaces = spaces.substring(0, ((spaces.length()+numWords-1)/(numWords-1)));

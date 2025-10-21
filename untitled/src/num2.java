@@ -7,7 +7,7 @@ public class num2 {
         //int lendthSize = sc.nextInt();
         int lendthSize = 100;
         //String str = sc.nextLine();
-        String str = "   wdawd! //// dwwrgtht. dfse?   ", restOfWord, result = "";
+        String str = "   wdawd! ////      dwwrgtht. dfse?   ", restOfWord, result = "";
 
         boolean flag = str.length() != 0;
         int countSym = 0;
@@ -16,48 +16,72 @@ public class num2 {
                 countSym++;
                 break;
             }
+        int totalWordChars = 0; //длина слов
         if(flag && countSym > 0) {
             for (int i = 0; i <= str.length(); i++) {
                 if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i)<= 47)|| (str.charAt(i) >= 58 && str.charAt(i)<= 64)|| (str.charAt(i) >= 91 && str.charAt(i)<= 96))) {
                     if (wordStart < i) {
                         countWords++;
-                        System.out.println("clovo");
+                        totalWordChars += (i - wordStart);
+                        System.out.println("Слово: " + str.substring(wordStart, i));
                     }
                     wordStart = i + 1;
-                    System.out.println( wordStart);
                 }
             }
+            System.out.println();
             if(countWords > 1) {
-                double shiftSpace = (lendthSize - (double) str.length()) / (countWords - 1);
-                System.out.println(shiftSpace);
+                int totalSpacesNeeded = lendthSize - totalWordChars;
+                int baseSpaces = totalSpacesNeeded / (countWords - 1);
+                int extraSpaces = totalSpacesNeeded % (countWords - 1);
+
+                System.out.println("Общее количество пробелов: " + totalSpacesNeeded);
+                System.out.println("Пробелов между словами: " + baseSpaces);
+                System.out.println("Остаток пробелов: " + extraSpaces);
                 String spaces = "";
-                for (int i = 0; i < (int) shiftSpace; i++) {
+                for (int i = 0; i < baseSpaces; i++) {
                     spaces += " ";
                 }
-                double addSpaces = (((double) (spaces.length() + countWords - 1) / (countWords - 1)) - (spaces.length() + countWords - 1) / (countWords - 1)) * (countWords - 1);
-                System.out.println(addSpaces);
+                System.out.println();
+
                 wordStart = 0;
                 int shet = 0;
                 for (int i = 0; i <= str.length(); i++) {
                     if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i)<= 47)|| (str.charAt(i) >= 58 && str.charAt(i)<= 64)|| (str.charAt(i) >= 91 && str.charAt(i)<= 96))) {
                         if (wordStart < i) {
                             restOfWord = str.substring(wordStart, i);
+                            result += restOfWord;
                             if (shet < countWords - 1) {
-                                result += restOfWord + spaces;
-                                shet++;
-                            } else
-                                result += restOfWord;
+                                result += spaces;
+                                if (shet < extraSpaces) {
+                                    result += " ";
+                                }
+                            }
+                            shet++;
                         }
                         wordStart = i + 1;
                     }
                 }
-                spaces = spaces.substring(0, (lendthSize - result.length())/(countWords-1));
-                System.out.println(spaces.length()+"!"+result.length()+"!"+lendthSize);
-                System.out.println(str);
-                System.out.println(str.length());
-                System.out.println(result);
-                System.out.println(result.length());
             }
+            else if (countWords == 1) { // Условие с одним словом
+                wordStart = 0;
+                for (int i = 0; i <= str.length(); i++) {
+                    if (i == str.length() || !((str.charAt(i) >= 'A' && str.charAt(i) <= 'Z')|| (str.charAt(i) >= 'a' && str.charAt(i)<= 'z'))) {
+                        if (wordStart < i) {
+                            result = str.substring(wordStart, i);
+                            while (result.length() < lendthSize) {
+                                result += " ";
+                            }
+                            break;
+                        }
+                        wordStart = i + 1;
+                    }
+                }
+            }
+            System.out.println("Исходная строчка: ["+str+']');
+            System.out.println("Длина исходной строчки: "+str.length()+"\n");
+            System.out.println("Итоговоая строчка: ["+ result + ']');
+            System.out.println("Длина итоговой строчки: "+result.length());
+            System.out.println("Необходимая длина: " + lendthSize);
         }
     }
 }
