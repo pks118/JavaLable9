@@ -7,7 +7,8 @@ public class num2 {
         //int lendthSize = sc.nextInt();
         int lendthSize = 100;
         //String str = sc.nextLine();
-        String str = "   wdawd! ////      dwwrgtht. dfse?   ", restOfWord, result = "";
+        String str = "awdaw !!!!dwad dawd/////", restOfWord, result = "";
+        //    wdawd! ////      dwwrgtht. dfse?
 
         boolean flag = str.length() != 0;
         int countSym = 0;
@@ -30,13 +31,12 @@ public class num2 {
             }
             System.out.println();
             if(countWords > 1) {
-                int totalSpacesNeeded = lendthSize - totalWordChars;
-                int baseSpaces = totalSpacesNeeded / (countWords - 1);
-                int extraSpaces = totalSpacesNeeded % (countWords - 1);
+                int baseSpaces = (lendthSize - totalWordChars) / (countWords - 1);
+                int addSpaces = (lendthSize - totalWordChars) % (countWords - 1);
 
-                System.out.println("Общее количество пробелов: " + totalSpacesNeeded);
+                System.out.println("Общее количество пробелов: " + (lendthSize - totalWordChars));
                 System.out.println("Пробелов между словами: " + baseSpaces);
-                System.out.println("Остаток пробелов: " + extraSpaces);
+                System.out.println("Остаток пробелов: " + addSpaces);
                 String spaces = "";
                 for (int i = 0; i < baseSpaces; i++) {
                     spaces += " ";
@@ -52,7 +52,7 @@ public class num2 {
                             result += restOfWord;
                             if (shet < countWords - 1) {
                                 result += spaces;
-                                if (shet < extraSpaces) {
+                                if (shet < addSpaces) {
                                     result += " ";
                                 }
                             }

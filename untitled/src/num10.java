@@ -1,11 +1,11 @@
 public class num10 {
     public static void main(String[] args) {
-        String str = "dog and always alwayz come back";
+        String str = "это единица речи, которая несёт в себе законченную мысль";
 
         int wordStart = 0, numOfWords = 0;
 
-        boolean strTrue = str.length() != 0;
-        if (strTrue) {
+        boolean flag = str.length() != 0;
+        if (flag) {
             //считаю количество слов в строчке
             for (int i = 0; i <= str.length(); i++) {
                 if (i == str.length() || str.charAt(i) == ' ') {
@@ -32,7 +32,9 @@ public class num10 {
             }
 
             //количество слов соответствующие минимуму и максимуму
-            String smallWord = result1[0], bigWord = result1[0];
+            String smallWord = result1[0],
+                    bigWord = result1[0];
+
             for (String word : result1) {
                 if (smallWord.length() > word.length()) {
                     smallWord = word;

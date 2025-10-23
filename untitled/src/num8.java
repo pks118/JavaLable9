@@ -9,6 +9,16 @@ public class num8 {
         //String num16 = "3A7";
         //935
         boolean flag = num16.length() != 0;
+        String error = "";
+        if (!flag){
+            error = "Пусто!";
+        }
+        for(int i = 0; i<num16.length(); i++){
+            if(!(num16.charAt(i) >= '0' && num16.charAt(i) <= '9') && !((num16.charAt(i) >= 'A' || num16.charAt(i) >= 'a') && (num16.charAt(i) <= 'F' || num16.charAt(i) <= 'f'))){
+                error = "Введено некорректное значение!";
+                flag = false;
+            }
+        }
         if (flag) {
             for (int i = num16.length() - 1; i >= 0; i--) {
                 double pow = Math.pow(16, num16.length() - 1 - i);
@@ -25,6 +35,7 @@ public class num8 {
             }
             System.out.println(num16 + "_16 = " + num10 + "_10");
         }
+        else System.out.println(error);
     }
 
     private static int from16To10(char num16) {

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.io.*;
@@ -23,13 +24,23 @@ public class num13 {
         for(String str : strs)
             System.out.println((strNum++) + "| " + str);
 
-
+        int sizeStr = 0;
+        boolean flag = true;
+        String error = "Ошибка!";
         System.out.println("Введите номер строки: ");
         sc = new Scanner(System.in);
-        int sizeStr = sc.nextInt();
 
 
-        if(countStr>=sizeStr){
+        try {
+            sizeStr = sc.nextInt();
+        }
+        catch (InputMismatchException e){
+            flag = false;
+        }
+
+
+
+        if(flag && countStr>=sizeStr && sizeStr > 0){
             String str = strs.get(sizeStr-1);
             int glass = 0, soglas = 0;
             for (char ch : str.toCharArray()){
@@ -50,8 +61,11 @@ public class num13 {
             System.out.println("Гласных: "+glass);
             System.out.println("Согласных: "+soglas);
         }
-        else
-            System.out.println("Ошибка: строчка "+ sizeStr + " не существует!");
+        else if (countStr<sizeStr)
+            error = "Ошибка: строчка "+ sizeStr + " не существует!";
+
+        if(!flag)
+            System.out.println(error);
 
     }
 

@@ -2,8 +2,8 @@ public class num11 {
     public static void main(String[] args) {
         int lendthSize = 100;
         String str = "wasdw dwawd dwawd wdd";
-        boolean strTrue = str.length() != 0;
-        if (strTrue) {
+        boolean flag = str.length() != 0;
+        if (flag) {
             int sizeStr = lendthSize - str.length();
             String spaces = "";
 
