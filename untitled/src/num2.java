@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 public class num2 {
     public static void main(String[] args) {
-        int wordStart = 0, countWords = 0;
+        //Был замечан не верный паттерн ввода! Убедительная просьба ввести строчку повторно!
         Scanner sc = new Scanner(System.in);
         //int lendthSize = sc.nextInt();
         int lendthSize = 100;
         //String str = sc.nextLine();
-        String str = "awdaw !!!!dwad dawd/////", restOfWord, result = "";
+        String str = "a    wd///aw !!!!dwad dawd/////", result = "";
         //    wdawd! ////      dwwrgtht. dfse?
 
         boolean flag = str.length() != 0;
@@ -17,13 +17,14 @@ public class num2 {
                 countSym++;
                 break;
             }
-        int totalWordChars = 0; //длина слов
+        int totalWordSym = 0; //длина слов
+        int wordStart = 0, countWords = 0;
         if(flag && countSym > 0) {
             for (int i = 0; i <= str.length(); i++) {
                 if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i)<= 47)|| (str.charAt(i) >= 58 && str.charAt(i)<= 64)|| (str.charAt(i) >= 91 && str.charAt(i)<= 96))) {
                     if (wordStart < i) {
                         countWords++;
-                        totalWordChars += (i - wordStart);
+                        totalWordSym += (i - wordStart);
                         System.out.println("Слово: " + str.substring(wordStart, i));
                     }
                     wordStart = i + 1;
@@ -31,10 +32,10 @@ public class num2 {
             }
             System.out.println();
             if(countWords > 1) {
-                int baseSpaces = (lendthSize - totalWordChars) / (countWords - 1);
-                int addSpaces = (lendthSize - totalWordChars) % (countWords - 1);
+                int baseSpaces = (lendthSize - totalWordSym) / (countWords - 1);
+                int addSpaces = (lendthSize - totalWordSym) % (countWords - 1);
 
-                System.out.println("Общее количество пробелов: " + (lendthSize - totalWordChars));
+                System.out.println("Общее количество пробелов: " + (lendthSize - totalWordSym));
                 System.out.println("Пробелов между словами: " + baseSpaces);
                 System.out.println("Остаток пробелов: " + addSpaces);
                 String spaces = "";
@@ -45,6 +46,7 @@ public class num2 {
 
                 wordStart = 0;
                 int shet = 0;
+                String restOfWord = "";
                 for (int i = 0; i <= str.length(); i++) {
                     if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i)<= 47)|| (str.charAt(i) >= 58 && str.charAt(i)<= 64)|| (str.charAt(i) >= 91 && str.charAt(i)<= 96))) {
                         if (wordStart < i) {

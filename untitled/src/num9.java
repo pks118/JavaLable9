@@ -34,7 +34,6 @@ public class num9 {
                 flag = false;
             }
             int day, month, year;
-
             //проверяю валидацию
             if (flag) {
                 day = convertEnteredNumber(date.substring(0, 2));

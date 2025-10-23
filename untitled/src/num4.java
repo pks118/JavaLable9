@@ -12,8 +12,6 @@ public class num4 {
                     if (wordStart < i) {
                         firstChar = str.charAt(wordStart);
                         restOfWord = str.substring(wordStart + 1, i);
-
-
                         capitalized = toUpperCase(firstChar);// преобразую символ в заглавный, если это не буква возвращаю обратно
                         System.out.println(capitalized);
                         result += capitalized + restOfWord;

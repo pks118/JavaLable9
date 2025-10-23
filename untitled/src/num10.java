@@ -6,8 +6,7 @@ public class num10 {
 
         boolean flag = str.length() != 0;
         if (flag) {
-            //считаю количество слов в строчке
-            for (int i = 0; i <= str.length(); i++) {
+            for (int i = 0; i <= str.length(); i++) {//считаю количество слов в строчке
                 if (i == str.length() || str.charAt(i) == ' ') {
                     if (wordStart < i) {
                         numOfWords++;
@@ -15,8 +14,7 @@ public class num10 {
                     wordStart = i + 1;
                 }
             }
-            //создаю массив на основе слов
-            String[] result1 = new String[numOfWords];
+            String[] result1 = new String[numOfWords]; //создаю массив на основе слов
             numOfWords = 0;
             wordStart = 0;
             //заполняю его
@@ -59,9 +57,9 @@ public class num10 {
             String[] resultSmall = new String[countSmallWord];
             String[] resultBig = new String[countBigWord];
 
-            //записываю минимум и максимум в отдельные массивы
+
             int index = 0;
-            for (int i = 0; i < result1.length && index < resultSmall.length; i++) {
+            for (int i = 0; i < result1.length && index < resultSmall.length; i++) {//записываю минимум и максимум в отдельные массивы
                 if (result1[i].length() == smallWord.length()) {
                     resultSmall[index] = result1[i];
                     index++;
