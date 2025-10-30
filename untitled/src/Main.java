@@ -25,7 +25,7 @@ public class Main {
                         break;
                     }
                 }
-                System.out.println(result);
+                //System.out.println(result);
                 for (int i = result.length() - 1; i != 0; i--) {
                     if (result.charAt(i) != ' ') {
                         result = result.substring(0, i + 1);

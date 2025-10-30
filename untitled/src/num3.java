@@ -1,68 +1,88 @@
+import java.util.Scanner;
+
 public class num3 {
     public static void main(String[] args) {
-        int countSp = 0;
-        String str = "Esfuseh eufhuesi ..... sefeu uhsuehfus";
-        int lendthSize = 100;
-
-        boolean flag = str.length() != 0;
+        Scanner sc = new Scanner(System.in);
+        int lendthSize;
+        String str;
+        boolean flag;
         int countSym = 0;
-        for (char ch : str.toCharArray())
-            if(ch != ' ') {
-                countSym++;
-                break;
-            }
-
-        int  countWords = 0;
+        int countWords = 0;
         int wordStart = 0;
         int totalWordSym = 0; //длина слов
-        if(flag && countSym > 0) {
-            for (int i = 0; i <= str.length(); i++) {
-                if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i)<= 47)|| (str.charAt(i) >= 58 && str.charAt(i)<= 64)|| (str.charAt(i) >= 91 && str.charAt(i)<= 96))) {
-                    if (wordStart < i) {
-                        countWords++;
-                        totalWordSym += (i - wordStart);
-                        System.out.println("Слово: " + str.substring(wordStart, i));
-                    }
-                    wordStart = i + 1;
-                }
+        int baseSpaces;
+        int addSpaces;
+        String restOfWord;
+        System.out.println("Для выхода введите '0' ");
+        while (true) {
+            System.out.print("Введите строку: ");
+            str = sc.nextLine();//строчка
+            if (str.equals("0")) {
+                System.out.println("Выход из программы.");
+                break;
             }
-
-            String result = "";
-            if(countWords > 1) {
-                int baseSpaces = ((lendthSize - totalWordSym+(countWords-1))/2) - (countWords-1);
-                int addSpaces = (lendthSize - totalWordSym) % 2;
-                System.out.println("Общее количество пробелов: " + baseSpaces);
-                System.out.println("Остаток пробелов: " + addSpaces);
-                String spaces = "";
-                for (int i = 0; i < baseSpaces; i++) {
-                    spaces += " ";
+            System.out.print("Введите ширину строки: ");
+            lendthSize = sc.nextInt();//ширина
+            if (lendthSize == 0) {
+                System.out.println("Выход из программы.");
+                break;
+            }
+            flag = str.length() > 0 && lendthSize > 0;
+            for (char ch : str.toCharArray())
+                if (ch != ' ') {
+                    countSym++;
+                    break;
                 }
-
-                System.out.println();
-
-                wordStart = 0;
-                int shet = 0;
-                String restOfWord = "";
+            if (flag && countSym > 0 && (lendthSize - str.length()>0)) {
                 for (int i = 0; i <= str.length(); i++) {
-                    if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i)<= 47)|| (str.charAt(i) >= 58 && str.charAt(i)<= 64)|| (str.charAt(i) >= 91 && str.charAt(i)<= 96))) {
+                    if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
                         if (wordStart < i) {
-                            restOfWord = str.substring(wordStart, i);
-                            result += restOfWord;
-                            if (shet < countWords - 1) {
-                                result += " ";
-                            }
-                            shet++;
+                            countWords++;
+                            totalWordSym += (i - wordStart);
+                            System.out.println("Слово: " + str.substring(wordStart, i));
                         }
                         wordStart = i + 1;
                     }
                 }
-                result = spaces + result + spaces;
+
+                String result = "";
+                if (countWords > 1) {
+                    baseSpaces = ((lendthSize - totalWordSym + (countWords - 1)) / 2) - (countWords - 1);
+                    addSpaces = (lendthSize - totalWordSym) % 2;
+                    System.out.println("Общее количество пробелов: " + baseSpaces);
+                    System.out.println("Остаток пробелов: " + addSpaces);
+                    String spaces = "";
+                    for (int i = 0; i < baseSpaces; i++) {
+                        spaces += " ";
+                    }
+
+                    System.out.println();
+
+                    wordStart = 0;
+                    for (int i = 0, shet = 0; i <= str.length(); i++) {
+                        if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
+                            if (wordStart < i) {
+                                restOfWord = str.substring(wordStart, i);
+                                result += restOfWord;
+                                if (shet < countWords - 1) {
+                                    result += " ";
+                                }
+                                shet++;
+                            }
+                            wordStart = i + 1;
+                        }
+                    }
+                    result = spaces + result + spaces;
+                }
+                System.out.println("Исходная строчка: [" + str + ']');
+                System.out.println("Длина исходной строчки: " + str.length() + "\n");
+                System.out.println("Итоговоая строчка: [" + result + ']');
+                System.out.println("Длина итоговой строчки: " + result.length());
+                System.out.println("Необходимая длина: " + lendthSize);
+                wordStart = 0;
+            } else {
+                System.out.println("Был замечан не верный паттерн ввода! Убедительная просьба ввести данные повторно!");
             }
-            System.out.println("Исходная строчка: ["+str+']');
-            System.out.println("Длина исходной строчки: "+str.length()+"\n");
-            System.out.println("Итоговоая строчка: ["+ result + ']');
-            System.out.println("Длина итоговой строчки: "+result.length());
-            System.out.println("Необходимая длина: " + lendthSize);
         }
     }
 }

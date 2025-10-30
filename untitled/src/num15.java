@@ -35,16 +35,13 @@ public class num15 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         num15 treugol = new num15();
-
         //5, 5, 5 Существует (равносторонний)
         //1, 1, 3 Не существует
         // 3, 4, 5 Существует
         treugol.setA(sc.nextDouble());
         treugol.setB(sc.nextDouble());
         treugol.setC(sc.nextDouble());
-
         treugol.showMe();
-
         boolean flag = true;
         if ((treugol.getA() > 0 && treugol.getB() > 0 && treugol.getC() > 0) && (treugol.getA() + treugol.getB() > treugol.getC()) && (treugol.getA() + treugol.getC() > treugol.getB()) && (treugol.getB() + treugol.getC() > treugol.getA()))
             System.out.println("Треугольник существует!");
@@ -52,7 +49,6 @@ public class num15 {
             System.out.println("Треугольник не существует!");
             flag = false;
         }
-
         if(flag)
             if (treugol.getA() == treugol.getB() && treugol.getB() == treugol.getC())
                 System.out.println("Это равносторонний треугольник");
