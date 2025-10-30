@@ -49,7 +49,6 @@ public class num2 {
                 if (countWords > 1) {
                     baseSpaces = (lendthSize - totalWordSym) / (countWords - 1);
                     addSpaces = (lendthSize - totalWordSym) % (countWords - 1);
-
                     System.out.println("Общее количество пробелов: " + (lendthSize - totalWordSym));
                     System.out.println("Пробелов между словами: " + baseSpaces);
                     System.out.println("Остаток пробелов: " + addSpaces);
