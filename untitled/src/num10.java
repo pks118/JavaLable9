@@ -1,80 +1,99 @@
+import java.util.Scanner;
+
 public class num10 {
     public static void main(String[] args) {
-        String str = "это единица речи, что которая законченную несёт себе мысль";
-
+        Scanner sc = new Scanner(System.in);
+        String str;
         int wordStart = 0, numOfWords = 0;
-
-        boolean flag = str.length() != 0;
-        if (flag) {
-            for (int i = 0; i <= str.length(); i++) {//считаю количество слов в строчке
-                if (i == str.length() || str.charAt(i) == ' ') {
-                    if (wordStart < i) {
-                        numOfWords++;
+        int countSmallWord, countBigWord;
+        boolean flag;
+        System.out.println("Для выхода введите '0' ");
+        while (true) {
+            System.out.print("Введите строку: ");
+            str = sc.nextLine();
+            if (str.equals("0")) {
+                System.out.println("Выход из программы.");
+                break;
+            }
+            flag = str.length() > 0;
+            if (flag) {
+                for (int i = 0; i <= str.length(); i++) {//считаю количество слов в строчке
+                    if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
+                        if (wordStart < i) {
+                            numOfWords++;
+                        }
+                        wordStart = i + 1;
                     }
-                    wordStart = i + 1;
                 }
-            }
-            String[] result1 = new String[numOfWords]; //создаю массив на основе слов
-            numOfWords = 0;
-            wordStart = 0;
-            for (int i = 0; i <= str.length(); i++) { //Заполняю его
-                if (i == str.length() || str.charAt(i) == ' ') {
-                    if (wordStart < i) {
-                        result1[numOfWords] = str.substring(wordStart, i);
-
+                String[] result1 = new String[numOfWords]; //создаю массив на основе слов
+                System.out.println(result1.length);
+                numOfWords = 0;
+                wordStart = 0;
+                for (int i = 0; i <= str.length(); i++) { //Заполняю его
+                    if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
+                        if (wordStart < i) {
+                            result1[numOfWords] = str.substring(wordStart, i);
+                            numOfWords++;
+                        }
+                        wordStart = i + 1;
                     }
-                    numOfWords++;
-                    wordStart = i + 1;
                 }
-            }
-            String smallWord = result1[0],
-                    bigWord = result1[0];
-            for (String word : result1) {
-                if (smallWord.length() > word.length()) {
-                    smallWord = word;
+                numOfWords = 0;
+                wordStart = 0;
+                String smallWord = result1[0],
+                        bigWord = result1[0];
+                for (String word : result1) {//нахожу самое маленькое слово
+                    if (smallWord.length() > word.length()) {
+                        smallWord = word;
+                    }
                 }
-            }
-            int countSmallWord = 0, countBigWord = 0;
-            for (String word : result1) {
-                if (smallWord.length() == word.length()) {
-                    countSmallWord++;
+                countSmallWord = countWords(result1, smallWord);
+                for (String word : result1) {
+                    if (bigWord.length() < word.length()) {
+                        bigWord = word;
+                    }
                 }
-            }
-            for (String word : result1) {
-                if (bigWord.length() < word.length()) {
-                    bigWord = word;
-                }
-            }
-            for (String word : result1) {
-                if (bigWord.length() == word.length()) {
-                    countBigWord++;
-                }
-            }
-            String[] resultSmall = new String[countSmallWord];
-            String[] resultBig = new String[countBigWord];
-            int index = 0;
-            for (int i = 0; i < result1.length && index < resultSmall.length; i++) {//записываю минимум и максимум в отдельные массивы
-                if (result1[i].length() == smallWord.length()) {
-                    resultSmall[index] = result1[i];
-                    index++;
-                }
-            }
-            index = 0;
-            for (int i = 0; i < result1.length && index < resultBig.length; i++) {
-                if (result1[i].length() == bigWord.length()) {
-                    resultBig[index] = result1[i];
-                    index++;
-                }
-            }
-            //вывод
-            System.out.println("Слова с минимальным количеством символов:");
-            for (String word : resultSmall)
-                System.out.println(word);
-            System.out.println();
-            System.out.println("Слова с максимальным количеством символов:");
-            for (String word : resultBig)
-                System.out.println(word);
+                countBigWord = countWords(result1, bigWord);
+                String[] resultSmall = new String[countSmallWord];//массив маленьких слов
+                String[] resultBig = new String[countBigWord];
+                fillingInArrays(result1, resultSmall, smallWord);
+                fillingInArrays(result1, resultBig, bigWord);
 
+                System.out.println("Слова с минимальным количеством символов:");
+                output(resultSmall);
+                System.out.println();
+                System.out.println("Слова с максимальным количеством символов:");
+                output(resultBig);
+            } else {
+                System.out.println("Был замечан не верный паттерн ввода! Убедительная просьба ввести данные повторно!");
+            }
         }
+    }
+
+    //запись минимальных и максимальных слов в отдельные массивы
+    private static void fillingInArrays(String[] str, String[] result_words, String word) {
+        for (int i = 0, index = 0; i < str.length && index < result_words.length; i++) {
+            if (str[i].length() == word.length()) {
+                result_words[index] = str[i];
+                index++;
+            }
+        }
+    }
+
+    //Вывод
+    private static void output(String[] result_words) {
+        for (String word : result_words)
+            System.out.println(word);
+    }
+
+    //подсчет количества слов с длинной символов слова
+    private static int countWords(String[] str, String word) {
+        int count_word = 0;
+        for (String str_word : str) {
+            if (word.length() == str_word.length()) {
+                count_word++;
+            }
+        }
+        return count_word;
     }
 }

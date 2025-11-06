@@ -17,29 +17,21 @@ public class num13 {
             countStr++;
         }
         sc.close();
-
-
         System.out.println("Дан файл: input.txt");
         int strNum = 1;
         for(String str : strs)
             System.out.println((strNum++) + "| " + str);
-
         int sizeStr = 0;
         boolean flag = true;
         String error = "Ошибка!";
         System.out.println("Введите номер строки: ");
         sc = new Scanner(System.in);
-
-
         try {
             sizeStr = sc.nextInt();
         }
         catch (InputMismatchException e){
             flag = false;
         }
-
-
-
         if(flag && countStr>=sizeStr && sizeStr > 0){
             String str = strs.get(sizeStr-1);
             int glass = 0, soglas = 0;

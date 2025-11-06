@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class num2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int lendthSize;
-        String str;
+        int lendthSize;//ширина
+        String str;//строчка
         String result = "";
+        String restOfWord = "";
         //a    wd///aw !!!!dwad dawd/////
         int countSym = 0;//кол-во символов
         int totalWordSym = 0; //длина слов
@@ -28,7 +29,7 @@ public class num2 {
                 System.out.println("Выход из программы.");
                 break;
             }
-            flag = str.length() != 0 && lendthSize > 0;
+            flag = str.length() > 0 && lendthSize > 0;
             for (char ch : str.toCharArray())
                 if (ch != ' ') {
                     countSym++;
@@ -59,7 +60,6 @@ public class num2 {
                     System.out.println();
 
                     wordStart = 0;
-                    String restOfWord = "";
                     for (int i = 0, shet = 0; i <= str.length(); i++) {
                         if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
                             if (wordStart < i) {
