@@ -3,15 +3,19 @@ import java.util.Scanner;
 public class num3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int lendthSize;
+        int lendthSize;//ширина
         String str;
+        String result;
         boolean flag;
-        int countSym = 0;
-        int countWords = 0;
-        int wordStart = 0;
+        int countSym = 0;//кол-во символов в строчке
+        int countWords = 0;//кол-во слов
+        int wordStart = 0;//начало слова
         int totalWordSym = 0; //длина слов
-        int baseSpaces;
-        int addSpaces;
+        int baseSpaces;//общее кол-во пробелов
+        int leftCountSpaces;//пробелы слева
+        int rightCountSpaces;//пробелы справа
+        String leftSpaces;
+        String rightSpaces;
         String restOfWord;
         System.out.println("Для выхода введите '0' ");
         while (true) {
@@ -45,19 +49,16 @@ public class num3 {
                     }
                 }
 
-                String result = "";
+                result = "";
                 if (countWords > 1) {
-                    baseSpaces = ((lendthSize - totalWordSym + (countWords - 1)) / 2) - (countWords - 1);
-                    addSpaces = (lendthSize - totalWordSym) % 2;
+                    baseSpaces = lendthSize - (totalWordSym + (countWords - 1));
+                    totalWordSym = 0;
+                    leftCountSpaces = baseSpaces / 2;
+                    rightCountSpaces = baseSpaces - leftCountSpaces;
                     System.out.println("Общее количество пробелов: " + baseSpaces);
-                    System.out.println("Остаток пробелов: " + addSpaces);
-                    String spaces = "";
-                    for (int i = 0; i < baseSpaces; i++) {
-                        spaces += " ";
-                    }
-
+                    leftSpaces = generatingSp(leftCountSpaces);
+                    rightSpaces = generatingSp(rightCountSpaces);
                     System.out.println();
-
                     wordStart = 0;
                     for (int i = 0, shet = 0; i <= str.length(); i++) {
                         if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
@@ -72,17 +73,28 @@ public class num3 {
                             wordStart = i + 1;
                         }
                     }
-                    result = spaces + result + spaces;
+                    result = leftSpaces + result + rightSpaces;
                 }
+                countWords = 0;
+                wordStart = 0;
                 System.out.println("Исходная строчка: [" + str + ']');
                 System.out.println("Длина исходной строчки: " + str.length() + "\n");
                 System.out.println("Итоговоая строчка: [" + result + ']');
                 System.out.println("Длина итоговой строчки: " + result.length());
                 System.out.println("Необходимая длина: " + lendthSize);
-                wordStart = 0;
+                sc.nextLine();
             } else {
-                System.out.println("Был замечан не верный паттерн ввода! Убедительная просьба ввести данные повторно!");
+                System.out.println("Был замечен неверный паттерн ввода! Убедительная просьба ввести данные повторно!");
+                sc.nextLine();
             }
+            countSym = 0;
         }
+    }
+    public static String generatingSp(int countSp){
+        String spaces = "";
+        for (int i = 0; i < countSp; i++) {
+            spaces += " ";
+        }
+        return spaces;
     }
 }

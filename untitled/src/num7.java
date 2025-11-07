@@ -29,7 +29,7 @@ public class num7 {
                         str1 += fromLatinToKirill(str.charAt(i), symbolsLat, symbolKyr);//транслитизатор латиницы в кириллицу
                     else str1 += fromKirillToLatin(str.charAt(i), symbolsKir, symbolLat);//наоборот
                 System.out.println(str1);
-            } else { System.out.println("Был замечан не верный паттерн ввода! Убедительная просьба ввести данные повторно!");}
+            } else { System.out.println("Был замечен неверный паттерн ввода! Убедительная просьба ввести данные повторно!");}
         }
     }
     private static String fromLatinToKirill(char symbol, char [] symbolsLat, String [] symbolKyr) {

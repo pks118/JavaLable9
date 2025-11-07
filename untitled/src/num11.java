@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
 public class num11 {
+    public static boolean flagOutput = true;
+    public void setFlagOutput(boolean flagOutput){
+        this.flagOutput = flagOutput;
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int lendthSize;
@@ -9,6 +13,7 @@ public class num11 {
         String spaces = "";
         String result;
         boolean flag;
+
         System.out.println("Для выхода введите '0' ");
         while (true) {
             System.out.print("Введите строку: ");
@@ -26,16 +31,21 @@ public class num11 {
                 System.out.println("Выход из программы.");
                 break;
             }
-            flag = str.length() > 0 && lendthSize > 0;
+            flag = !str.isEmpty() && lendthSize > 0;
             if (flag) {
                 sizeStr = lendthSize - str.length();
                 for (int i = 0; i < sizeStr; i++) {
                     spaces += " ";
                 }
-                result = spaces + str;
+                if(num11.flagOutput)
+                    result = spaces + str;
+                else result = str + spaces;
                 System.out.println(result);
+                sc.nextLine();
+                spaces="";
             }else {
-                System.out.println("Был замечан не верный паттерн ввода! Убедительная просьба ввести данные повторно!");
+                System.out.println("Был замечен неверный паттерн ввода! Убедительная просьба ввести данные повторно!");
+                sc.nextLine();
             }
         }
     }

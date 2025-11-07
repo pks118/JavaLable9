@@ -96,9 +96,11 @@ public class num2 {
                 System.out.println("Итоговоая строчка: [" + result + ']');
                 System.out.println("Длина итоговой строчки: " + result.length());
                 System.out.println("Необходимая длина: " + lendthSize);
+                sc.nextLine();
                 wordStart = 0;
             } else {
-                System.out.println("Был замечан не верный паттерн ввода! Убедительная просьба ввести данные повторно!");
+                System.out.println("Был замечен неверный паттерн ввода! Убедительная просьба ввести данные повторно!");
+                sc.nextLine();
             }
         }
     }
