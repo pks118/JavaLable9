@@ -58,7 +58,5 @@ public class num13 {
 
         if(!flag)
             System.out.println(error);
-
     }
-
 }

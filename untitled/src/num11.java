@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class num11 {
     public static boolean flagOutput = true;
-    public void setFlagOutput(boolean flagOutput){
-        this.flagOutput = flagOutput;
+    public void setFlagOutput(boolean flag){
+        flagOutput = flag;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -40,7 +40,7 @@ public class num11 {
                 if(num11.flagOutput)
                     result = spaces + str;
                 else result = str + spaces;
-                System.out.println(result);
+                System.out.println("["+result+"]");
                 sc.nextLine();
                 spaces="";
             }else {

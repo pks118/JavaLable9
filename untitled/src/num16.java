@@ -1,19 +1,55 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class num16 {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
         //A(2, 5), B(7, 5), C(7, 3)
-        double x1 = sc.nextDouble();
-        double y1 = sc.nextDouble();
-        double x2 = sc.nextDouble();
-        double y2 = sc.nextDouble();
-        double x3 = sc.nextDouble();
-        double y3 = sc.nextDouble();
-        double find1 = findForFourth(x1, x2, x3);
-        double find2 = findForFourth(y1, y2, y3);
-        System.out.println("D["+find1+", "+find2+"]");
+        boolean flag = true;
+        String err = "";
+        String exit;
+        double x1 = 0.0;
+        double y1 = 0.0;
+        double x2 = 0.0;
+        double y2 = 0.0;
+        double x3 = 0.0;
+        double y3 = 0.0;
+        double find1;
+        double find2;
+        while (true) {
+            try {
+                System.out.print("Введите точку x1:");
+                x1 = sc.nextDouble();
+                System.out.print("Введите точку y1:");
+                y1 = sc.nextDouble();
+                System.out.print("Введите точку x2:");
+                x2 = sc.nextDouble();
+                System.out.print("Введите точку y2:");
+                y2 = sc.nextDouble();
+                System.out.print("Введите точку x3:");
+                x3 = sc.nextDouble();
+                System.out.print("Введите точку y3:");
+                y3 = sc.nextDouble();
+            } catch (InputMismatchException e) {
+                flag = false;
+                err = "Ошибка ввода!";
+                sc.nextLine();
+            }
+            find1 = findForFourth(x1, x2, x3);
+            find2 = findForFourth(y1, y2, y3);
+            if (flag) {
+                System.out.println("D[" + find1 + ", " + find2 + "]");
+            } else {
+                System.out.println(err);
+                flag = true;
+            }
+            System.out.print("Хотите продолжить? (Для выхода введите 'y' ): ");
+            exit = sc.next();
+            if (!exit.equals("y")) {
+                System.out.println("Выход из программы.");
+                break;
+            }
+        }
     }
 
     private static double findForFourth(double x1, double x2, double x3){

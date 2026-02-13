@@ -44,12 +44,11 @@ public class num4 {
     }
 
     private static char toUpperCase(char c) {
-
-        if (c >= 'а' && c <= 'я') { //проверяю символ на наличие кириллицы
+        if (c >= 'а' && c <= 'я') {
             return (char) (c - 32);
         } else if (c == 'ё') {//Исключаю Ё
             return 'Ё';
-        } else if (c >= 'a' && c <= 'z') {// Для латиницы
+        } else if (c >= 'a' && c <= 'z') {
             return (char) (c - 32);
         }
         return c;

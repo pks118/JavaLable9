@@ -73,7 +73,6 @@ public class num10 {
             }
         }
     }
-    //запись минимальных и максимальных слов в отдельные массивы
     private static void fillingInArrays(String[] str, String[] result_words, String word) {
         for (int i = 0, index = 0; i < str.length && index < result_words.length; i++) {
             if (str[i].length() == word.length()) {
@@ -82,12 +81,10 @@ public class num10 {
             }
         }
     }
-    //Вывод
     private static void output(String[] result_words) {
         for (String word : result_words)
             System.out.println(word);
     }
-    //подсчет количества слов с длинной символов слова
     private static int countWords(String[] str, String word) {
         int count_word = 0;
         for (String str_word : str) {

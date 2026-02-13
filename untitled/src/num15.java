@@ -44,6 +44,7 @@ public class num15 {
         // 3, 4, 5 Существует
         boolean flag = true;
         String err = "";
+        String exit;
         while (true) {
             try {
                 System.out.print("Введите точку А:");
@@ -79,9 +80,9 @@ public class num15 {
                 System.out.println(err);
                 flag = true;
             }
-            System.out.print("Хотите продолжить? (y/n): ");
-            String choice = sc.next();
-            if (!choice.equals("y")) {
+            System.out.print("Хотите продолжить? (Для выхода введите 'y' ): ");
+            exit = sc.next();
+            if (!exit.equals("y")) {
                 System.out.println("Выход из программы.");
                 break;
             }

@@ -54,7 +54,7 @@ public class num6 {
                 System.out.println("Расшифровка: \t\t\t\t" + str3 +"\n");
                 str2="";
                 str3="";
-                sc.nextLine();//я не знаю почему, но после ввода целого числа скан пропускает ввод строчки. Повторный ввод это чинит
+                sc.nextLine();
             }
             else {
                 System.out.println("Был замечен неверный паттерн ввода! Убедительная просьба ввести данные повторно!");
@@ -78,7 +78,7 @@ public class num6 {
                     return alphabetBm[i + position - 1];
             }
         }
-        return symbol;//символа нет в алфавите
+        return symbol;
     }
     public static char reCipher(char symbol, int position){
         for(int i = 0; i < alphabetSm.length; i++) {
