@@ -34,10 +34,14 @@ public class num2 {
 
             System.out.print("Введите ширину строки: ");
             lendthSize = sc.hasNextInt() ? sc.nextInt() : -1;
+            if (lendthSize == 0) {
+                System.out.println("Выход из программы.");
+                break;
+            }
 
             if (lendthSize > 0 && (lendthSize - str.length()>0)) {
                 for (int i = 0; i <= str.length(); i++) {
-                    if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
+                    if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
                         if (wordStart < i) {
                             countWords++;
                             totalWordSym += (i - wordStart);
@@ -64,7 +68,7 @@ public class num2 {
                     System.out.println();
                     wordStart = 0;
                     for (int i = 0, shet = 0; i <= str.length(); i++) {
-                        if (i == str.length() || !(Utils.checkAlpha(str.charAt(i)))) {
+                        if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
                             if (wordStart < i) {
                                 restOfWord = str.substring(wordStart, i);
                                 result += restOfWord;

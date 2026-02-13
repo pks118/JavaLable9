@@ -6,57 +6,46 @@ import java.io.*;
 
 public class num13 {
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "untitled\\src\\input.txt";
-        Scanner sc = new Scanner(new File(path));
-        int countStr = 0;
-        List<String> strs = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        String str;//строчка ввода
+        int glass, soglas;
+        System.out.println("Для выхода введите '0' ");
+        while (true) {
+            System.out.print("Введите строку: ");
+            str = sc.nextLine();
+            if (str.equals("0")) {
+                System.out.println("Выход из программы.");
+                break;
+            }
 
-        while (sc.hasNextLine())
-        {
-            strs.add(sc.nextLine());
-            countStr++;
-        }
-        sc.close();
-        System.out.println("Дан файл: input.txt");
-        int strNum = 1;
-        for(String str : strs)
-            System.out.println((strNum++) + "| " + str);
-        int sizeStr = 0;
-        boolean flag = true;
-        String error = "Ошибка!";
-        System.out.println("Введите номер строки: ");
-        sc = new Scanner(System.in);
-        try {
-            sizeStr = sc.nextInt();
-        }
-        catch (InputMismatchException e){
-            flag = false;
-        }
-        if(flag && countStr>=sizeStr && sizeStr > 0){
-            String str = strs.get(sizeStr-1);
-            int glass = 0, soglas = 0;
-            for (char ch : str.toCharArray()){
-                if(ch >= 192 && ch != 'ь' && ch != 'ъ' && ch != 'Ь' && ch != 'Ъ') {
-                    if (ch == 'а' || ch == 'о' || ch == 'у' || ch == 'и' || ch == 'ы' || ch == 'я'|| ch == 'ю'|| ch == 'е'|| ch == 'ё'|| ch == 'э' || ch == 'А' || ch == 'О' || ch == 'У' || ch == 'И' || ch == 'Ы' || ch == 'Я'|| ch == 'Ю'|| ch == 'Е'|| ch == 'Ё'|| ch == 'Э')
-                        glass++;
-                     else
-                        soglas++;
-                }
-                else if((ch >= 65 && ch <= 90)||(ch >= 97 && ch <= 122)){
-                    if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y'|| ch == 'A'|| ch == 'E'|| ch == 'I'|| ch == 'O' || ch == 'U' || ch == 'Y')
-                        glass++;
-                    else
-                        soglas++;
+            if (Utils.emptyStr(str)) {
+                System.out.println("Строчка пуста!");
+                continue;
+            }
+
+            if (Utils.onlySpaces(str)) {
+                System.out.println("В строчке только пробелы!");
+                continue;
+            }
+
+            glass = soglas = 0;
+            for (char ch : str.toCharArray()) {
+                if (ch >= 192 && ch != 'ь' && ch != 'ъ' && ch != 'Ь' && ch != 'Ъ') {
+                    switch (ch) {
+                        case 'а', 'о', 'у', 'и', 'ы', 'я', 'ю', 'е', 'ё', 'э', 'А', 'О', 'У', 'И', 'Ы', 'Я', 'Ю', 'Е', 'Ё', 'Э' ->
+                                glass++;
+                        default -> soglas++;
+                    }
+                } else if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)) {
+                    switch (ch) {
+                        case 'a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y' -> glass++;
+                        default -> soglas++;
+                    }
                 }
             }
-            System.out.println(strs.get(sizeStr-1));
-            System.out.println("Гласных: "+glass);
-            System.out.println("Согласных: "+soglas);
+            System.out.println("В строчке: "+str);
+            System.out.println("Гласных: " + glass);
+            System.out.println("Согласных: " + soglas);
         }
-        else if (countStr<sizeStr)
-            error = "Ошибка: строчка "+ sizeStr + " не существует!";
-
-        if(!flag)
-            System.out.println(error);
     }
 }

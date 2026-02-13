@@ -5,8 +5,7 @@ public class num16 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //A(2, 5), B(7, 5), C(7, 3)
-        boolean flag = true;
-        String err = "";
+        boolean flag;
         String exit;
         double x1 = 0.0;
         double y1 = 0.0;
@@ -14,9 +13,9 @@ public class num16 {
         double y2 = 0.0;
         double x3 = 0.0;
         double y3 = 0.0;
-        double find1;
-        double find2;
+        double find1, find2;
         while (true) {
+            flag = true;
             try {
                 System.out.print("Введите точку x1:");
                 x1 = sc.nextDouble();
@@ -32,16 +31,14 @@ public class num16 {
                 y3 = sc.nextDouble();
             } catch (InputMismatchException e) {
                 flag = false;
-                err = "Ошибка ввода!";
                 sc.nextLine();
             }
-            find1 = findForFourth(x1, x2, x3);
-            find2 = findForFourth(y1, y2, y3);
             if (flag) {
+                find1 = findForFourth(x1, x2, x3);
+                find2 = findForFourth(y1, y2, y3);
                 System.out.println("D[" + find1 + ", " + find2 + "]");
             } else {
-                System.out.println(err);
-                flag = true;
+                System.out.println("Ошибка ввода!");
             }
             System.out.print("Хотите продолжить? (Для выхода введите 'y' ): ");
             exit = sc.next();
