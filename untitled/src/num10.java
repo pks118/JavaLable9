@@ -28,7 +28,7 @@ public class num10 {
 
             wordStart = numOfWords = 0;
             for (int i = 0; i <= str.length(); i++) {//считаю количество слов в строчке
-                if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
+                if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
                     if (wordStart < i) {
                         numOfWords++;
                     }
@@ -41,7 +41,7 @@ public class num10 {
             numOfWords = 0;
             wordStart = 0;
             for (int i = 0; i <= str.length(); i++) { //Заполняю его
-                if (i == str.length() || ((str.charAt(i) >= 32 && str.charAt(i) <= 47) || (str.charAt(i) >= 58 && str.charAt(i) <= 64) || (str.charAt(i) >= 91 && str.charAt(i) <= 96))) {
+                if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
                     if (wordStart < i) {
                         result1[numOfWords] = str.substring(wordStart, i);
                         numOfWords++;

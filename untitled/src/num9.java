@@ -6,7 +6,7 @@ public class num9 {
         Scanner sc = new Scanner(System.in);
         String date;
         boolean flag;
-        int stage, day, month, year;
+        int day, month, year;
         System.out.println("Для выхода введите '0' ");
         while (true) {
             System.out.print("Введите строку: ");
@@ -21,57 +21,30 @@ public class num9 {
                 continue;
             }
 
-            if (Utils.onlySpaces(date)) {
-                System.out.println("В строчке только пробелы!");
+            if (date.length() != 10 || date.indexOf('.') != 2 || date.lastIndexOf('.') != 5) {
+                System.out.println("Ошибка: неверный формат даты!");
                 continue;
             }
 
-            stage = 0;
-            flag = date.length() == 10;
-            if (flag) {
-                for (int i = 0; i < date.length(); i++) {
-                    if ((!(date.charAt(i) >= '0' && date.charAt(i) <= '9')) && date.charAt(i) != '.') {
-                        System.out.println("Ошибка: \"" + date.charAt(i) + "\" не допустимый формат!");
-                        flag = false;
-                        break;
-                    } else if ((date.charAt(i) == '.')) {
-                        if (i != 2 && stage == 0) {//проверяю стоит ли точка на своём месте
-                            System.out.println("Ошибка: день \"" + date.substring(0, i) + "\" введён не корректно!");
-                            flag = false;
-                            break;
-                        } else if (i != 5 && stage == 1) {
-                            System.out.println("Ошибка: месяц \"" + date.substring(3, i) + "\" введён не корректно!");
-                            flag = false;
-                            break;
-                        }
-                        stage++;
-                    }
-                }
-                if (stage != 2) {
-                    System.out.println("Ошибка: некорректное количество точек или они не на своих местах!");
-                    flag = false;
-                }
-                if (flag) {
-                    day = convertEnteredNumber(date.substring(0, 2));
-                    month = convertEnteredNumber(date.substring(3, 5));
-                    year = convertEnteredNumber(date.substring(6));
-                    if ((day > 31) || checkMonthDay(month) < day) {//проверка даты и.т.д
-                        flag = false;
-                        System.out.println("Ошибка: некорректная дата - \"" + date.substring(0, 2) + "\" !");
-                    } else if (month > 12 || month < 1) {
-                        flag = false;
-                        System.out.println("Ошибка: некорректный месяц - \"" + date.substring(3, 5) + "\" !");
-                    } else if (year < 1925 || year > 2126) {
-                        flag = false;
-                        System.out.println("Ошибка: некорректный год - \"" + date.substring(6) + "\" !");
-                    }
-                }
-                if (flag)
-                    System.out.println(date.substring(0, 2) + "\n" + date.substring(3, 5) + "\n" + date.substring(6));
+            day = convertEnteredNumber(date.substring(0, 2));
+            month = convertEnteredNumber(date.substring(3, 5));
+            year = convertEnteredNumber(date.substring(6));
+            flag = true;
+            if ((day > 31) || checkMonthDay(month) < day) {//проверка даты и.т.д
+                flag = false;
+                System.out.println("Ошибка: некорректная дата - \"" + date.substring(0, 2) + "\" !");
+            } else if (month > 12 || month < 1) {
+                flag = false;
+                System.out.println("Ошибка: некорректный месяц - \"" + date.substring(3, 5) + "\" !");
+            } else if (year < 1925 || year > 2126) {
+                flag = false;
+                System.out.println("Ошибка: некорректный год - \"" + date.substring(6) + "\" !");
             }
-            else System.out.println("Ошибка ввода!");
-        }
+            if (flag)
+                System.out.println(date.substring(0, 2) + "\n" + date.substring(3, 5) + "\n" + date.substring(6));
     }
+
+}
 
     private static int convertEnteredNumber(String nums)//конвертирую из строки в число
     {

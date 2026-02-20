@@ -25,18 +25,14 @@ public class num6 {
                 System.out.println("В строчке только пробелы!");
                 continue;
             }
-
+            
             System.out.println("Алфавит");
-            for(int i = 0; i<Utils.alphabetBm.length; i++){
-                if(i == Utils.alphabetBm.length-1)
-                    System.out.print(Utils.alphabetBm[i]+".");
-                else
-                    System.out.print(Utils.alphabetBm[i]+",\t");
-            }
+            for(int i = 0; i<Utils.alphKir.length(); i++)
+                    System.out.print(Utils.alphKir.charAt(i)+"\t");
 
             System.out.println();
 
-            for(int i = 0; i<Utils.alphabetBm.length; i++){
+            for(int i = 0; i<Utils.alphKir.length(); i++){
                     System.out.print((i+1)+"\t");
             }
 
@@ -47,8 +43,9 @@ public class num6 {
                 break;
             }
 
-            while (shift_ch > Utils.alphabetSm.length + 1)//Вычисляю начальную позицию в алфавите
-                shift_ch -= Utils.alphabetSm.length;
+            while (shift_ch > Utils.alphKir.length()) {
+                shift_ch -= Utils.alphKir.length();
+            }
 
             str2 = str3 = "";
             if (shift_ch > 0) {
@@ -69,36 +66,19 @@ public class num6 {
             }
         }
     }
-    private static char cipher(char symbol, int position){
-        for(int i = 0; i < Utils.alphabetSm.length; i++) {
-            if (symbol == Utils.alphabetSm[i]) {//для строчных
-                if (i + position - 1 > Utils.alphabetSm.length - 1)
-                    return Utils.alphabetSm[i + position - 1 - Utils.alphabetSm.length];//позиция символа выходит за границы алфавита
-                else
-                    return Utils.alphabetSm[i + position - 1];//не выходит за границы
-            } else if(symbol == Utils.alphabetBm[i]) {//для заглавных
-                if (i + position - 1 > Utils.alphabetBm.length - 1)
-                    return Utils.alphabetBm[i + position - 1 - Utils.alphabetBm.length];
-                else
-                    return Utils.alphabetBm[i + position - 1];
-            }
+    private static char cipher(char symbol, int position) {
+        int index = Utils.alphKir.indexOf(symbol);
+
+        if (index != -1) {
+            return index + position > Utils.alphKir.length() - 1 ? Utils.alphKir.charAt(index + position - Utils.alphKir.length()) : Utils.alphKir.charAt(index + position);
         }
         return symbol;
     }
 
-    private static char reCipher(char symbol, int position){
-        for(int i = 0; i < Utils.alphabetSm.length; i++) {
-            if (symbol == Utils.alphabetSm[i]) {
-                if (i - (position - 1) < 0)
-                    return Utils.alphabetSm[i - (position - 1) + Utils.alphabetSm.length];
-                else
-                    return Utils.alphabetSm[i - (position - 1)];
-            } else if(symbol == Utils.alphabetBm[i]){
-                if (i - (position - 1) < 0)
-                    return Utils.alphabetBm[i - (position - 1) + Utils.alphabetBm.length];
-                else
-                    return Utils.alphabetBm[i - (position - 1)];
-            }
+    private static char reCipher(char symbol, int position) {
+        int index = Utils.alphKir.indexOf(symbol);
+        if (index != -1) {
+            return index - position < 0 ? Utils.alphKir.charAt(index - position + Utils.alphKir.length()) : Utils.alphKir.charAt(index - position);
         }
         return symbol;
     }
