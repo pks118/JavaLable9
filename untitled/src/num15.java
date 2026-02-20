@@ -19,15 +19,15 @@ public class num15 {
     }
 
     public void setA(double num) {
-        this.a = num;
+        a = num;
     }
 
     public void setB(double num) {
-        this.b = num;
+        b = num;
     }
 
     public void setC(double num) {
-        this.c = num;
+        c = num;
     }
 
     public void showMe() {
@@ -42,10 +42,10 @@ public class num15 {
         //5, 5, 5 Существует (равносторонний)
         //1, 1, 3 Не существует
         // 3, 4, 5 Существует
-        boolean flag = true;
-        String err = "";
+        boolean flag;
         String exit;
         while (true) {
+            flag = true;
             try {
                 System.out.print("Введите точку А:");
                 treugol.setA(sc.nextDouble());
@@ -55,7 +55,6 @@ public class num15 {
                 treugol.setC(sc.nextDouble());
             } catch (InputMismatchException e) {
                 flag = false;
-                err = "Ошибка ввода!";
                 sc.nextLine();
             }
             if (flag) {
@@ -71,14 +70,10 @@ public class num15 {
                         System.out.println("Это равносторонний треугольник");
                     else {
                         System.out.println("Это не равносторонний треугольник");
-                        flag = true;
                     }
-                }else {
-                    flag = true;
                 }
             } else {
-                System.out.println(err);
-                flag = true;
+                System.out.println("Ошибка ввода!");
             }
             System.out.print("Хотите продолжить? (Для выхода введите 'y' ): ");
             exit = sc.next();
