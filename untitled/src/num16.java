@@ -7,12 +7,7 @@ public class num16 {
         //A(2, 5), B(7, 5), C(7, 3)
         boolean flag;
         String exit;
-        double x1 = 0.0;
-        double y1 = 0.0;
-        double x2 = 0.0;
-        double y2 = 0.0;
-        double x3 = 0.0;
-        double y3 = 0.0;
+        double x1 = 0.0, y1= 0.0, x2= 0.0, y2= 0.0, x3= 0.0, y3= 0.0;
         double find1, find2;
         while (true) {
             flag = true;

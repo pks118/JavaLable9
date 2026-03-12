@@ -34,7 +34,7 @@ public class num3 {
                 break;
             }
 
-            if (lendthSize > 0 && (lendthSize - str.length()>0)) {
+            if (lendthSize > 0 && (lendthSize - str.length()>=0)) {
                 for (int i = 0; i <= str.length(); i++) {
                     if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
                         if (wordStart < i) {
@@ -46,7 +46,7 @@ public class num3 {
                     }
                 }
                 result = "";
-                if (countWords > 1) {
+                if (countWords > 0) {
                     baseSpaces = lendthSize - (totalWordSym + (countWords - 1));
                     totalWordSym = 0;
                     leftCountSpaces = baseSpaces / 2;

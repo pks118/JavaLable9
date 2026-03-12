@@ -7,8 +7,9 @@ public class num11 {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int lendthSize, sizeStr;
-        String str, spaces, result;
+        int lendthSize, sizeStr, wordStart, countWord;;
+        String str, spaces, result, restOfWord;
+        String[] words;
 
         System.out.println("Для выхода введите '0' ");
         while (true) {
@@ -35,9 +36,34 @@ public class num11 {
                 System.out.println("Выход из программы.");
                 break;
             }
-
-            if (lendthSize > 0 && (lendthSize - str.length()>0)) {
-                sizeStr = lendthSize - str.length();
+            wordStart = 0;
+            countWord = 0;
+            for (int i = 0; i <= str.length(); i++) {
+                if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
+                    if (wordStart < i) {
+                        countWord++;
+                    }
+                    wordStart = i + 1;
+                }
+            }
+            wordStart = 0;
+            words = new String[countWord];
+            for (int i = 0, schet = 0; i <= str.length(); i++) {
+                if (i == str.length() || str.charAt(i) == ' ') {
+                    if (wordStart < i) {
+                        restOfWord = str.substring(wordStart, i);
+                        words[schet] = restOfWord;
+                        schet++;
+                    }
+                    wordStart = i + 1;
+                }
+            }
+            result = "";
+            for (int i = 0; i < words.length; i++) {
+                result += i == words.length - 1 ? words[i] : words[i] + " ";
+            }
+            if (lendthSize > 0 && (lendthSize - str.length()>=0)) {
+                sizeStr = lendthSize - result.length();
 
                 spaces = "";
                 for (int i = 0; i < sizeStr; i++) {
@@ -45,8 +71,8 @@ public class num11 {
                 }
 
                 if(num11.flagOutput)
-                    result = spaces + str;
-                else result = str + spaces;
+                    result = spaces + result;
+                else result = result + spaces;
 
                 System.out.println("["+result+"]");
                 sc.nextLine();

@@ -30,13 +30,13 @@ public class num9 {
             month = convertEnteredNumber(date.substring(3, 5));
             year = convertEnteredNumber(date.substring(6));
             flag = true;
-            if ((day > 31) || checkMonthDay(month) < day) {//проверка даты и.т.д
+            if ((day > 31) || checkMonthDay(month, year) < day) {//проверка даты и.т.д
                 flag = false;
                 System.out.println("Ошибка: некорректная дата - \"" + date.substring(0, 2) + "\" !");
             } else if (month > 12 || month < 1) {
                 flag = false;
                 System.out.println("Ошибка: некорректный месяц - \"" + date.substring(3, 5) + "\" !");
-            } else if (year < 1925 || year > 2126) {
+            } else if (year < 1000 || year > 9999) {
                 flag = false;
                 System.out.println("Ошибка: некорректный год - \"" + date.substring(6) + "\" !");
             }
@@ -54,12 +54,25 @@ public class num9 {
         return num;
     }
 
-    private static int checkMonthDay(int month) {//Проверяю кол-во дней
-        return switch (month) {
-            case 1, 3, 5, 7, 8, 10, 12 -> 31;
-            case 4, 6, 9, 11 -> 30;
-            case 2 -> 28;
-            default -> 0;
-        };
+    private static int checkMonthDay(int month, int year) {//Проверяю кол-во дней
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                return 31;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return 30;
+            case 2:
+                return year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ? 28 : 29;
+            default:
+                return 0;
+        }
     }
 }

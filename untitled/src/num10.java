@@ -65,7 +65,7 @@ public class num10 {
                 }
             }
             countBigWord = countWords(result1, bigWord);
-            resultSmall = new String[countSmallWord];//массив маленьких слов
+            resultSmall = new String[countSmallWord]; //массив маленьких слов
             resultBig = new String[countBigWord];
             fillingInArrays(result1, resultSmall, smallWord);
             fillingInArrays(result1, resultBig, bigWord);
@@ -99,6 +99,7 @@ public class num10 {
                 count_word++;
             }
         }
+
         return count_word;
     }
 }

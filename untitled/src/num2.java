@@ -39,7 +39,7 @@ public class num2 {
                 break;
             }
 
-            if (lendthSize > 0 && (lendthSize - str.length()>0)) {
+            if (lendthSize > 0 && (lendthSize - str.length()>=0)) {
                 for (int i = 0; i <= str.length(); i++) {
                     if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
                         if (wordStart < i) {

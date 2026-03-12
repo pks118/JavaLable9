@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class num12 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int wordStart, count_word;
+        int wordStart, countWord;
         String str, restOfWord, result;
         String[] words;
         System.out.println("Для выхода введите '0' ");
         while (true) {
-            count_word = 0;
+            countWord = 0;
             System.out.print("Введите строку: ");
             str = sc.nextLine();
             if (str.equals("0")) {
@@ -29,13 +29,13 @@ public class num12 {
             for (int i = 0; i <= str.length(); i++) {
                 if (i == str.length() || !Utils.checkAlpha(str.charAt(i))) {
                     if (wordStart < i) {
-                        count_word++;
+                        countWord++;
                     }
                     wordStart = i + 1;
                 }
             }
             wordStart = 0;
-            words = new String[count_word];
+            words = new String[countWord];
             for (int i = 0, schet = 0; i <= str.length(); i++) {
                 if (i == str.length() || str.charAt(i) == ' ') {
                     if (wordStart < i) {
@@ -54,7 +54,7 @@ public class num12 {
                     result += words[i] + " ";
             }
             System.out.println("Исходная строчка: [" + str + ']');
-            System.out.println("Итоговоая строчка: [" + result + ']');
+            System.out.println("Итоговая строчка: [" + result + ']');
         }
     }
 }

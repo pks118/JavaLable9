@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class num7 {
-    public static void main(String[] args) {
+    public static void main(String[] args) { // b ghdrtsuytdu
         Scanner sc = new Scanner(System.in);
         String str, str1;
 
@@ -25,19 +25,10 @@ public class num7 {
             }
 
             str1 = "";
+            //транслитизатор латиницы в кириллицу
             for (int i = 0; i < str.length(); i++)
-                str1 += Utils.alphLat.indexOf(str.charAt(i)) != -1
-                        ? fromLatinToKirill(str.charAt(i), "абсдефгчижклмнопкрстувдсёзАБСДЕФГЧИЖКЛМНОПКРСТУВДСЁЗ")//транслитизатор латиницы в кириллицу
-                        : fromKirillToLatin(str.charAt(i), "abvgdeyjziiklmnoprstufhchhh i ayiABVGDEYJZIIKLMNOPRSTUFHCHHH I AYI");
+                str1 += Utils.transliter(str.charAt(i));
             System.out.println(str1);
         }
-    }
-
-    private static char fromLatinToKirill(char symbol, String symbolKyr) {
-        return Utils.alphLat.indexOf(symbol) !=-1 ? symbolKyr.charAt(Utils.alphLat.indexOf(symbol)) : symbol;
-    }
-
-    private static char fromKirillToLatin(char symbol, String symbolLat) {
-        return Utils.alphKir.indexOf(symbol) !=-1 ? symbolLat.charAt(Utils.alphKir.indexOf(symbol)) : symbol;
     }
 }
