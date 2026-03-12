@@ -70,7 +70,7 @@ public class num9 {
             case 11:
                 return 30;
             case 2:
-                return year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ? 28 : 29;
+                return year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ? 29 : 28;
             default:
                 return 0;
         }
